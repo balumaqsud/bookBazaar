@@ -1,5 +1,6 @@
 import express from "express"
 import router from "./router"
+import routerAdmin from "./routerAdmin";
 import path from "path"
 
 //enterance ---middlewares
@@ -14,6 +15,7 @@ app.set("views", path.join(__dirname, "public"));
 app.set("view engine", "ejs");
 
 //routnig
-app.use("/", router);
+app.use("/", router);                   // will be build in React
+app.use("/admin", routerAdmin);         // will be build in EJS
 
 export default app;
