@@ -1,5 +1,6 @@
 import {Request, Response} from "express";
-import {T} from "../libs/types/common"
+import {T} from "../libs/types/common";
+
 
 const memberCotroller: T = {}
 memberCotroller.goHome = (req: Request, res: Response) => {
