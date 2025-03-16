@@ -3,8 +3,9 @@ import adminController from "./controllers/admin.controller"
 
 const routerAdmin = express.Router();
 
-routerAdmin.get("/", adminController.goHome);
-routerAdmin.get("/", adminController.login);
-routerAdmin.get("/", adminController.signin);
+routerAdmin.get('/', adminController.goHome);
+routerAdmin.get('/login', adminController.login);
+routerAdmin.get('/signin', adminController.signin);
+
 
 export default routerAdmin;

@@ -14,7 +14,7 @@ app.use(express.json())
 app.set("views", path.join(__dirname, "public"));
 app.set("view engine", "ejs");
 
-//routnig
+//routning
 app.use("/", router);                   // will be build in React
 app.use("/admin", routerAdmin);         // will be build in EJS
 

@@ -2,29 +2,27 @@ import { Request, Response } from "express";
 import {T} from "../libs/types/common"
 
 const adminController: T = {};
-adminController.goHome("/", (req: Request, res: Response)=> {
+adminController.goHome = (req: Request, res: Response) => {
     try {
-        console.log("admin home page")
-
-    } catch(error){
-        console.log("home error", error)
+        res.send("Admin Home page")
+    } catch (error) {
+        console.log("goHome", error)
     }
-})
-adminController.login("/", (req: Request, res: Response)=> {
+}
+adminController.login = (req: Request, res: Response) => {
     try {
-        console.log("admin login page")
-
-    } catch(error){
-        console.log("home error", error)
+        res.send("Admin login page")
+    } catch (error) {
+        console.log("goHome", error)
     }
-})
-adminController.singin("/", (req: Request, res: Response)=> {
+}
+adminController.signin = (req: Request, res: Response) => {
     try {
-        console.log("admin signin page")
-
-    } catch(error){
-        console.log("home error", error)
+        res.send("Admin signin page")
+    } catch (error) {
+        console.log("goHome", error)
     }
-})
+}
 
 export default adminController;
+
