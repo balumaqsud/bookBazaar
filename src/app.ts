@@ -1,4 +1,5 @@
 import express from "express"
+import router from "./router"
 import path from "path"
 
 //enterance ---middlewares
@@ -13,6 +14,6 @@ app.set("views", path.join(__dirname, "public"));
 app.set("view engine", "ejs");
 
 //routnig
-
+app.use("/", router)
 
 export default app;
