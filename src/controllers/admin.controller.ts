@@ -17,9 +17,9 @@ adminController.login = (req: Request, res: Response) => {
         console.log("goHome", error)
     }
 }
-adminController.signin = (req: Request, res: Response) => {
+adminController.signUp = (req: Request, res: Response) => {
     try {
-        res.send("Admin signin page")
+        res.send("Admin signUp page")
     } catch (error) {
         console.log("goHome", error)
     }

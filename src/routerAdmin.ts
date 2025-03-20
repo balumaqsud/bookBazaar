@@ -5,7 +5,7 @@ const routerAdmin = express.Router();
 
 routerAdmin.get('/', adminController.goHome);
 routerAdmin.get('/login', adminController.login);
-routerAdmin.get('/signin', adminController.signin);
+routerAdmin.get('/signup', adminController.signUp);
 
 
 export default routerAdmin;

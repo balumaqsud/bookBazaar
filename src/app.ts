@@ -5,7 +5,6 @@ import path from "path"
 import morgan from "morgan";
 import { MORGAN_STANDARD } from "./libs/config";
 
-
 //enterance ---middlewares
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
