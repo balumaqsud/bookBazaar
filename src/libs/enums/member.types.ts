@@ -1,9 +1,9 @@
-export enum memberType {
+export enum MemberType {
     USER = "USER",
     ADMIN = "ADMIN"
 }
 
-export enum memberStatus {
+export enum MemberStatus {
     ACTIVE = "ACTIVE",
     BLOCK = "BLOCK",
     DELETE = "DELETE",
