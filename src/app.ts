@@ -2,12 +2,16 @@ import express from "express"
 import router from "./router"
 import routerAdmin from "./routerAdmin";
 import path from "path"
+import morgan from "morgan";
+import { MORGAN_STANDARD } from "./libs/config";
+
 
 //enterance ---middlewares
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
+app.use(morgan(MORGAN_STANDARD))
 
 //sessions
 //views

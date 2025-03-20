@@ -1,0 +1,1 @@
+export const MORGAN_STANDARD = `:method :url :response-time :status \n`

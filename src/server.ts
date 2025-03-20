@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 import dotenv from "dotenv"
 import app from "./app"
+mongoose.set('strictQuery', false);
 dotenv.config()
 
 //env variables
