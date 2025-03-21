@@ -4,13 +4,14 @@ import Errors, { HttpCode, Message } from "../libs/Errors";
 import { MemberType } from "../libs/enums/member.types";
 import bcrypt from "bcryptjs";
 
+//Member service helps us to control member schema and stands between schema and controller!
 class MemberService {
     private readonly memberModel;
     //schema from schemaModel 
     constructor() {
         this.memberModel = MemberModel;
     }
-
+    //signin proccess
     public async proccessSignUp(input: MemberInput): Promise<Member>{
         //thowing erro if admin type exists
         const exist = await this.memberModel.findOne({memberType: MemberType.ADMIN}).exec()
@@ -32,7 +33,7 @@ class MemberService {
             throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED)
         }
     }
-    
+    //loginproccess
     public async proccessLogin(input: LoginInput): Promise<Member> {
         //finding membernick in database as the same as input's membernick! and returning membernick and password
         const member = await this.memberModel.findOne({memberNick: input.memberNick}, {memberNick: 1, memberPassword: 1}).exec()
@@ -45,6 +46,5 @@ class MemberService {
         const result = await this.memberModel.findById(member._id).exec()
         return result?.toObject() as Member;
     }
-
 }
 export default MemberService;

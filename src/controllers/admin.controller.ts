@@ -4,10 +4,10 @@ import MemberService from "../model/Member.service";
 import { MemberInput, LoginInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.types";
 
+const adminController: T = {};  //Object with type of T
 
-const adminController: T = {};
+const memberService = new MemberService()  //instance from MemberService! 
 
-const memberService = new MemberService()
 adminController.goHome = (req: Request, res: Response) => {
     try {
         res.send("Admin Home page")
@@ -22,13 +22,15 @@ adminController.login = (req: Request, res: Response) => {
         console.log("goHome", error)
     }
 }
+//login process
 adminController.proccessLogin = async (req: Request, res: Response) => {
     try {
         console.log('login process')
-        const input: LoginInput = req.body
-        console.log(input)
+        //getting user's request with type of  LoginType
+        const input: LoginInput = req.body   
 
-        const result = await memberService.proccessLogin(input)
+         //passing input to proccessLogin Method of memberService;
+        const result = await memberService.proccessLogin(input) 
         res.send(result)
     } catch (error) {
         console.log("proccessLogin", error)
@@ -43,14 +45,15 @@ adminController.signup = (req: Request, res: Response) => {
         console.log("sigin", error)
     }
 }
+//singin process
 adminController.proccessSignUp = async (req: Request, res: Response) => {
     try {
-        //gettinguser's response 
+        //getting user's request
         console.log("Process signUP")
         const newMember: MemberInput = req.body;
-        newMember.memberType = MemberType.ADMIN;
+        newMember.memberType = MemberType.ADMIN;   //setting memberType as Admin
 
-        //passing it to memberservice's method and getting result
+        //passing it to MemberService's method and getting result
         const result = await memberService.proccessSignUp(newMember)
         res.send(result)
     } catch (error) {
