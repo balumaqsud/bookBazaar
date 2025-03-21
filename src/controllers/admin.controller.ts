@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
 import {T} from "../libs/types/common"
 import MemberService from "../model/Member.service";
-import { MemberInput } from "../libs/types/member";
+import { MemberInput, LoginInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.types";
 
+
 const adminController: T = {};
+
+const memberService = new MemberService()
 adminController.goHome = (req: Request, res: Response) => {
     try {
         res.send("Admin Home page")
@@ -19,11 +22,17 @@ adminController.login = (req: Request, res: Response) => {
         console.log("goHome", error)
     }
 }
-adminController.proccessLogin = (req: Request, res: Response) => {
+adminController.proccessLogin = async (req: Request, res: Response) => {
     try {
-        res.send("proccessLogin page")
+        console.log('login process')
+        const input: LoginInput = req.body
+        console.log(input)
+
+        const result = await memberService.proccessLogin(input)
+        res.send(result)
     } catch (error) {
         console.log("proccessLogin", error)
+        res.send(error)
     }
 }
 
@@ -39,11 +48,9 @@ adminController.proccessSignUp = async (req: Request, res: Response) => {
         //gettinguser's response 
         console.log("Process signUP")
         const newMember: MemberInput = req.body;
-        console.log(newMember)
         newMember.memberType = MemberType.ADMIN;
 
         //passing it to memberservice's method and getting result
-        const memberService = new MemberService()
         const result = await memberService.proccessSignUp(newMember)
         res.send(result)
     } catch (error) {
