@@ -16,6 +16,7 @@ export enum Message {
     UPDATE_FAILED = "Update is failed!",
     USER_NOT_FOUND = "User not found, wrong Id",
     WRONG_PASSWORD = "Password is incorrect"
+
 }
 
 class Errors extends Error {
