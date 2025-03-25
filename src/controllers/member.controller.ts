@@ -10,8 +10,8 @@ const memberCotroller: T = {}
 memberCotroller.signup = async(req: Request, res: Response) => {
     try {
         console.log("login page")
-        const input: MemberInput = req.body;
-        const result: Member = await memberService.signup(input)
+        const input: MemberInput = req.body,
+        result: Member = await memberService.signup(input)
         
         res.json({member: result})
     } catch (error) {
@@ -24,11 +24,14 @@ memberCotroller.signup = async(req: Request, res: Response) => {
 memberCotroller.login = async (req: Request, res: Response) => {
     try {
         console.log("login page")
+        const input: LoginInput = req.body,
+        result = await memberService.login(input)
         
-           
+        res.json({member: result})
     } catch (error) {
         console.log("home error: ", error)
+        if(error instanceof Errors) res.status(error.code).json(error.message);
+        else res.status(Errors.standard.code).json(Errors.standard)
     }
 }
-
 export default memberCotroller;

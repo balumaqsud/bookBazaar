@@ -24,6 +24,16 @@ class MemberService {
             throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE)
         }
     }
+    public async login(input:LoginInput): Promise<Member>{
+        const member = await this.memberModel.findOne({memberNick: input.memberNick}, {memberNick: 1, memberPassword: 1}).exec()
+        if(!member) throw new Errors(HttpCode.NOT_FOUND, Message.USER_NOT_FOUND);
+        
+        const isMatch = await bcrypt.compare(input.memberPassword, member.memberPassword);
+        if(!isMatch) throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
+
+        const result = await this.memberModel.findById(member._id).exec()
+        return result?.toObject() as Member;
+    }
 
     //BSSR
     //signin proccess
