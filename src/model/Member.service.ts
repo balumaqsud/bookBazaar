@@ -11,6 +11,21 @@ class MemberService {
     constructor() {
         this.memberModel = MemberModel;
     }
+    //SPA
+    public async signup(input: MemberInput): Promise<Member> {
+
+        const salt = await bcrypt.genSalt()
+        input.memberPassword = await bcrypt.hash(input.memberPassword, salt)
+        try {
+            const result = await this.memberModel.create(input)
+            result.memberPassword = ""
+            return result.toJSON() as Member;
+        } catch (error) {
+            throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE)
+        }
+    }
+
+    //BSSR
     //signin proccess
     public async proccessSignUp(input: MemberInput): Promise<Member>{
         //thowing erro if admin type exists

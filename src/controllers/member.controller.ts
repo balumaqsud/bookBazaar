@@ -1,27 +1,34 @@
 import {Request, Response} from "express";
 import {T} from "../libs/types/common";
+import MemberService from "../model/Member.service";
+import { MemberInput, Member, LoginInput } from "../libs/types/member";
+import Errors from "../libs/Errors";
 
+const memberService = new MemberService()
 
 const memberCotroller: T = {}
-memberCotroller.goHome = (req: Request, res: Response) => {
+memberCotroller.signup = async(req: Request, res: Response) => {
     try {
-        res.send("home page")    
+        console.log("login page")
+        const input: MemberInput = req.body;
+        const result: Member = await memberService.signup(input)
+        
+        res.json({member: result})
+    } catch (error) {
+        console.log("error in signup:", error)
+        if(error instanceof Errors) res.status(error.code).json(error)
+        else res.status(Errors.standard.code).json(Errors.standard)
+    }
+}
+
+memberCotroller.login = async (req: Request, res: Response) => {
+    try {
+        console.log("login page")
+        
+           
     } catch (error) {
         console.log("home error: ", error)
     }
 }
-memberCotroller.login = (req: Request, res: Response) => {
-    try {
-        res.send("login page")    
-    } catch (error) {
-        console.log("home error: ", error)
-    }
-}
-memberCotroller.signin = (req: Request, res: Response) => {
-    try {
-        res.send("singin page")    
-    } catch (error) {
-        console.log("home error: ", error)
-    }
-}
+
 export default memberCotroller;

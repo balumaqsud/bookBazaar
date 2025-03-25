@@ -4,8 +4,7 @@ import memberCotroller from "./controllers/member.controller";
 const router = express.Router()
 
 //routers
-router.get("/", memberCotroller.goHome);
-router.get("/login", memberCotroller.login);
-router.get("/signin", memberCotroller.signin);
+router.post("/login", memberCotroller.login);
+router.post("/signup", memberCotroller.signup);
 
 export default router;
