@@ -10,7 +10,7 @@ const memberService = new MemberService()  //instance from MemberService!
 
 adminController.goHome = (req: Request, res: Response) => {
     try {
-        res.send("Admin Home page")
+        res.render("home")
     } catch (error) {
         console.log("goHome", error)
     }

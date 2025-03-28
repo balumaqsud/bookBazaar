@@ -14,7 +14,7 @@ app.use(morgan(MORGAN_STANDARD))
 
 //sessions
 //views
-app.set("views", path.join(__dirname, "public"));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 //routning
