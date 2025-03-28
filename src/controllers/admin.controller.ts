@@ -84,5 +84,18 @@ adminController.checkAuthSession = async (req: loginRequest, res: Response) =>{
     }
 }
 
+//logout
+adminController.logout = async (req: loginRequest, res: Response) => {
+    try {
+        req.session.destroy(()=> {
+            res.redirect("/login")
+        })
+        
+    } catch (error) {
+        console.log("logout error", error)
+        res.redirect("/login")
+    }
+}
+
 export default adminController;
 
