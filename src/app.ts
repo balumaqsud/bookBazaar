@@ -4,6 +4,18 @@ import routerAdmin from "./routerAdmin";
 import path from "path"
 import morgan from "morgan";
 import { MORGAN_STANDARD } from "./libs/config";
+import dotenv from "dotenv";
+dotenv.config()
+//for sessions
+import session from 'express-session';
+import ConnectMongoDb from "connect-mongodb-session"
+
+//creating store object: 
+const MongoStore = ConnectMongoDb(session)
+const store = new MongoStore({
+    uri: String(process.env.MONGO_URL),
+    collection: "sessions"
+})
 
 //enterance ---middlewares
 const app = express();
@@ -13,6 +25,16 @@ app.use(express.json())
 app.use(morgan(MORGAN_STANDARD))
 
 //sessions
+app.use(session({
+    secret: String(process.env.SESSION_SECRET),
+    cookie: {
+    maxAge: 1000 * 3600 * 8  // 8 hours
+  },
+  store: store,
+  resave: true,
+  saveUninitialized: true
+}))
+
 //views
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
