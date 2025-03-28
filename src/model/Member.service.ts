@@ -38,7 +38,7 @@ class MemberService {
     //BSSR
     //signin proccess
     public async proccessSignUp(input: MemberInput): Promise<Member>{
-        //thowing erro if admin type exists
+        // thowing erro if admin type exists
         const exist = await this.memberModel.findOne({memberType: MemberType.ADMIN}).exec()
         if(exist) {
             console.log('admin exist')
@@ -51,7 +51,6 @@ class MemberService {
         //tring to create and admin with memberModel.create()
         try {
             const result = await this.memberModel.create(input)
-        console.log("result", result)
             result.memberPassword = "";
             //sending result as Member type
             return result.toObject() as Member;   

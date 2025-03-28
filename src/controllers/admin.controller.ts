@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import {T} from "../libs/types/common"
 import MemberService from "../model/Member.service";
-import { MemberInput, LoginInput } from "../libs/types/member";
+import { MemberInput, LoginInput, loginRequest } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.types";
 
 const adminController: T = {};  //Object with type of T
@@ -31,7 +31,7 @@ adminController.signup = (req: Request, res: Response) => {
     }
 }
 //singin process
-adminController.proccessSignUp = async (req: Request, res: Response) => {
+adminController.proccessSignUp = async (req: loginRequest, res: Response) => {
     try {
         //getting user's request
         console.log("Process signUP")
@@ -40,7 +40,10 @@ adminController.proccessSignUp = async (req: Request, res: Response) => {
 
         //passing it to MemberService's method and getting result
         const result = await memberService.proccessSignUp(newMember)
-        res.send(result)
+        req.session.member = result;
+        req.session.save(()=>{
+            res.send(result)
+        })
     } catch (error) {
         console.log("Process signUp error", error)
         res.send(error)
@@ -48,7 +51,7 @@ adminController.proccessSignUp = async (req: Request, res: Response) => {
 }
 
 //login process
-adminController.proccessLogin = async (req: Request, res: Response) => {
+adminController.proccessLogin = async (req: loginRequest, res: Response) => {
     try {
         console.log('login process')
         //getting user's request with type of  LoginType
@@ -56,7 +59,10 @@ adminController.proccessLogin = async (req: Request, res: Response) => {
 
          //passing input to proccessLogin Method of memberService;
         const result = await memberService.proccessLogin(input) 
-        res.send(result)
+        req.session.member = result;
+        req.session.save(()=>{
+            res.send(result)
+        })
     } catch (error) {
         console.log("proccessLogin", error)
         res.send(error)
