@@ -85,13 +85,13 @@ adminController.checkAuthSession = async (req: loginRequest, res: Response) =>{
 //logout
 adminController.logout = async (req: loginRequest, res: Response) => {
     try {
-        console.log("logut")
+        console.log("logout")
         req.session.destroy(()=> {
-            res.redirect("/login")
+            res.redirect("/admin")
         })
     } catch (error) {
         console.log("logout error", error)
-        res.redirect("/login")
+        res.redirect("/admin")
     }
 }
 
