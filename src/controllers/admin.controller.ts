@@ -72,25 +72,23 @@ adminController.proccessLogin = async (req: loginRequest, res: Response) => {
         res.send(`<script>alert("${message}"): window.location.replace('admin/login')</script> `)
     }
 }
-
+//checking if auth session works
 adminController.checkAuthSession = async (req: loginRequest, res: Response) =>{
     try {
-        if(req.session?.member) res.send(`Hiiii, ${req.session.member.memberNick}`)
-        else{res.send(Message.NOT_AUTHENTICATED)}
-        
+        if(req.session?.member) res.send(`<script>alert("${req.session.member.memberNick}"): window.location.replace('admin/login')</script> `)
+        else{res.send(`<script>alert("${Message.NOT_AUTHENTICATED}"): window.location.replace('admin/login')</script>`)}
     } catch (error) {
         console.log("checkAuthSession:", error)
         res.send(error)
     }
 }
-
 //logout
 adminController.logout = async (req: loginRequest, res: Response) => {
     try {
+        console.log("logut")
         req.session.destroy(()=> {
             res.redirect("/login")
         })
-        
     } catch (error) {
         console.log("logout error", error)
         res.redirect("/login")

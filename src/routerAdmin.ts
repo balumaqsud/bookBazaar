@@ -8,7 +8,7 @@ routerAdmin.get('/login', adminController.login).post("/login", adminController.
 routerAdmin.get('/signup', adminController.signup).post("/signup", adminController.proccessSignUp);
 
 routerAdmin.get("/check-me", adminController.checkAuthSession);
-routerAdmin.post('/logout', adminController.logout);
+routerAdmin.get('/logout', adminController.logout);
 
 
 export default routerAdmin;
