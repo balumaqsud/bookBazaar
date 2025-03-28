@@ -3,6 +3,8 @@ import {T} from "../libs/types/common"
 import MemberService from "../model/Member.service";
 import { MemberInput, LoginInput, loginRequest } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.types";
+import Errors, {Message} from "../libs/Errors";
+
 
 const adminController: T = {};  //Object with type of T
 
@@ -46,7 +48,8 @@ adminController.proccessSignUp = async (req: loginRequest, res: Response) => {
         })
     } catch (error) {
         console.log("Process signUp error", error)
-        res.send(error)
+        const message = error instanceof Errors ? error.message : Message.SOMETHING_WENT_WRONG;
+        res.send(`<script>alert("${message}"): window.location.replace('admin/login')</script> `)
     }
 }
 
@@ -65,7 +68,8 @@ adminController.proccessLogin = async (req: loginRequest, res: Response) => {
         })
     } catch (error) {
         console.log("proccessLogin", error)
-        res.send(error)
+        const message = error instanceof Errors ? error.message : Message.SOMETHING_WENT_WRONG;
+        res.send(`<script>alert("${message}"): window.location.replace('admin/login')</script> `)
     }
 }
 
