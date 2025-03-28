@@ -22,25 +22,10 @@ adminController.login = (req: Request, res: Response) => {
         console.log("goHome", error)
     }
 }
-//login process
-adminController.proccessLogin = async (req: Request, res: Response) => {
-    try {
-        console.log('login process')
-        //getting user's request with type of  LoginType
-        const input: LoginInput = req.body   
-
-         //passing input to proccessLogin Method of memberService;
-        const result = await memberService.proccessLogin(input) 
-        res.send(result)
-    } catch (error) {
-        console.log("proccessLogin", error)
-        res.send(error)
-    }
-}
 
 adminController.signup = (req: Request, res: Response) => {
     try {
-        res.send("signin page")
+        res.send("signup page")
     } catch (error) {
         console.log("sigin", error)
     }
@@ -57,9 +42,26 @@ adminController.proccessSignUp = async (req: Request, res: Response) => {
         const result = await memberService.proccessSignUp(newMember)
         res.send(result)
     } catch (error) {
-        console.log("Process signIn error", error)
+        console.log("Process signUp error", error)
         res.send(error)
     }
 }
+
+//login process
+adminController.proccessLogin = async (req: Request, res: Response) => {
+    try {
+        console.log('login process')
+        //getting user's request with type of  LoginType
+        const input: LoginInput = req.body   
+
+         //passing input to proccessLogin Method of memberService;
+        const result = await memberService.proccessLogin(input) 
+        res.send(result)
+    } catch (error) {
+        console.log("proccessLogin", error)
+        res.send(error)
+    }
+}
+
 export default adminController;
 

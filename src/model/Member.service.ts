@@ -47,14 +47,16 @@ class MemberService {
         //hashing password coming in input
         const salt = await bcrypt.genSalt()
         input.memberPassword = await bcrypt.hash(input.memberPassword, salt)
-       
+
         //tring to create and admin with memberModel.create()
         try {
             const result = await this.memberModel.create(input)
+        console.log("result", result)
             result.memberPassword = "";
             //sending result as Member type
             return result.toObject() as Member;   
         } catch (error) {
+            
             throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED)
         }
     }
