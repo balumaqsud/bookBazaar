@@ -16,7 +16,8 @@ export enum Message {
     UPDATE_FAILED = "Update is failed!",
     USER_NOT_FOUND = "User not found, wrong Id",
     WRONG_PASSWORD = "Password is incorrect",
-    USED_NICK_PHONE = "USED Nickname or Phone NUmber"
+    USED_NICK_PHONE = "USED Nickname or Phone NUmber",
+    NOT_AUTHENTICATED = "You are not authenticated yet, Please Login first!"
 }
 
 class Errors extends Error {

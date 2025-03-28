@@ -73,5 +73,16 @@ adminController.proccessLogin = async (req: loginRequest, res: Response) => {
     }
 }
 
+adminController.checkAuthSession = async (req: loginRequest, res: Response) =>{
+    try {
+        if(req.session?.member) res.send(`Hiiii, ${req.session.member.memberNick}`)
+        else{res.send(Message.NOT_AUTHENTICATED)}
+        
+    } catch (error) {
+        console.log("checkAuthSession:", error)
+        res.send(error)
+    }
+}
+
 export default adminController;
 
