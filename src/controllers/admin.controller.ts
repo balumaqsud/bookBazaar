@@ -5,7 +5,6 @@ import { MemberInput, LoginInput, loginRequest } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.types";
 import Errors, {Message} from "../libs/Errors";
 
-
 const adminController: T = {};  //Object with type of T
 
 const memberService = new MemberService()  //instance from MemberService! 
@@ -52,7 +51,6 @@ adminController.proccessSignUp = async (req: loginRequest, res: Response) => {
         res.send(`<script>alert("${message}"): window.location.replace('admin/login')</script> `)
     }
 }
-
 //login process
 adminController.proccessLogin = async (req: loginRequest, res: Response) => {
     try {
