@@ -1,3 +1,4 @@
+import { loginRequest } from "../libs/types/member";
 import Errors from "../libs/Errors";
 import { T } from "../libs/types/common";
 import ProductService from "../model/Product.service";
