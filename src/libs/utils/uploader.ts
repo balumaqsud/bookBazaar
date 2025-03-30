@@ -8,6 +8,7 @@ const getTargetAdress = (address: string) => {
       cb(null, `./uploads/${address}`);
     },
     filename: (req, file, cb) => {
+      console.log(file);
       const extention = path.parse(file.originalname).ext;
       const file_name = v4() + extention;
       cb(null, file_name);

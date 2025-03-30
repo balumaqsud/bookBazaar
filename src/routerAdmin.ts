@@ -1,6 +1,7 @@
 import express from "express";
 import adminController from "./controllers/admin.controller";
 import productController from "./controllers/product.controller";
+import uploader from "./libs/utils/uploader";
 
 const routerAdmin = express.Router();
 
@@ -11,7 +12,11 @@ routerAdmin
   .post("/login", adminController.proccessLogin);
 routerAdmin
   .get("/signup", adminController.signup)
-  .post("/signup", adminController.proccessSignUp);
+  .post(
+    "/signup",
+    uploader("members").single("memberImage"),
+    adminController.proccessSignUp
+  );
 
 routerAdmin.get("/check-me", adminController.checkAuthSession);
 routerAdmin.get("/logout", adminController.logout);
@@ -25,6 +30,7 @@ routerAdmin.get(
 routerAdmin.post(
   "/product/create",
   adminController.verifyAdmin,
+  uploader("products").array("productImage", 6),
   productController.createNewProduct
 );
 routerAdmin.post(
