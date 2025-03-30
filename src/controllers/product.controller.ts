@@ -30,6 +30,7 @@ productController.createNewProduct = async (req: Request, res: Response) => {
     }
   }
 };
+
 productController.updateTheProduct = async (req: Request, res: Response) => {
   try {
     console.log("updateTheProduct");

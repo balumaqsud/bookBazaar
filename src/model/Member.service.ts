@@ -1,76 +1,95 @@
 import { MemberInput, Member, LoginInput } from "../libs/types/member";
 import MemberModel from "../schema/Member.model";
 import Errors, { HttpCode, Message } from "../libs/Errors";
-import { MemberType } from "../libs/enums/member.types";
+import { MemberType } from "../libs/enums/member.enum";
 import bcrypt from "bcryptjs";
 
 //Member service helps us to control member schema and stands between schema and controller!
 class MemberService {
-    private readonly memberModel;
-    //schema from schemaModel 
-    constructor() {
-        this.memberModel = MemberModel;
+  private readonly memberModel;
+  //schema from schemaModel
+  constructor() {
+    this.memberModel = MemberModel;
+  }
+  //SPA
+  public async signup(input: MemberInput): Promise<Member> {
+    const salt = await bcrypt.genSalt();
+    input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
+    try {
+      const result = await this.memberModel.create(input);
+      result.memberPassword = "";
+      return result.toJSON() as Member;
+    } catch (error) {
+      throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
     }
-    //SPA
-    public async signup(input: MemberInput): Promise<Member> {
+  }
+  public async login(input: LoginInput): Promise<Member> {
+    const member = await this.memberModel
+      .findOne(
+        { memberNick: input.memberNick },
+        { memberNick: 1, memberPassword: 1 }
+      )
+      .exec();
+    if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.USER_NOT_FOUND);
 
-        const salt = await bcrypt.genSalt()
-        input.memberPassword = await bcrypt.hash(input.memberPassword, salt)
-        try {
-            const result = await this.memberModel.create(input)
-            result.memberPassword = ""
-            return result.toJSON() as Member;
-        } catch (error) {
-            throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE)
-        }
+    const isMatch = await bcrypt.compare(
+      input.memberPassword,
+      member.memberPassword
+    );
+    if (!isMatch)
+      throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
+
+    const result = await this.memberModel.findById(member._id).exec();
+    return result?.toObject() as Member;
+  }
+
+  //BSSR
+  //signin proccess
+  public async proccessSignUp(input: MemberInput): Promise<Member> {
+    // thowing erro if admin type exists
+    const exist = await this.memberModel
+      .findOne({ memberType: MemberType.ADMIN })
+      .exec();
+    if (exist) {
+      console.log("admin exist");
+      throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     }
-    public async login(input:LoginInput): Promise<Member>{
-        const member = await this.memberModel.findOne({memberNick: input.memberNick}, {memberNick: 1, memberPassword: 1}).exec()
-        if(!member) throw new Errors(HttpCode.NOT_FOUND, Message.USER_NOT_FOUND);
-        
-        const isMatch = await bcrypt.compare(input.memberPassword, member.memberPassword);
-        if(!isMatch) throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
 
-        const result = await this.memberModel.findById(member._id).exec()
-        return result?.toObject() as Member;
+    //hashing password coming in input
+    const salt = await bcrypt.genSalt();
+    input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
+
+    //tring to create and admin with memberModel.create()
+    try {
+      const result = await this.memberModel.create(input);
+      result.memberPassword = "";
+      //sending result as Member type
+      return result.toObject() as Member;
+    } catch (error) {
+      throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     }
+  }
+  //loginproccess
+  public async proccessLogin(input: LoginInput): Promise<Member> {
+    //finding membernick in database as the same as input's membernick! and returning membernick and password
+    const member = await this.memberModel
+      .findOne(
+        { memberNick: input.memberNick },
+        { memberNick: 1, memberPassword: 1 }
+      )
+      .exec();
+    if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.USER_NOT_FOUND);
+    //checking if input's password and pasword in db is the same!
+    const isMatch = await bcrypt.compare(
+      input.memberPassword,
+      member.memberPassword
+    );
+    if (!isMatch)
+      throw new Errors(HttpCode.BAD_REQUEST, Message.WRONG_PASSWORD);
 
-    //BSSR
-    //signin proccess
-    public async proccessSignUp(input: MemberInput): Promise<Member>{
-        // thowing erro if admin type exists
-        const exist = await this.memberModel.findOne({memberType: MemberType.ADMIN}).exec()
-        if(exist) {
-            console.log('admin exist')
-            throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED)}
-
-        //hashing password coming in input
-        const salt = await bcrypt.genSalt()
-        input.memberPassword = await bcrypt.hash(input.memberPassword, salt)
-
-        //tring to create and admin with memberModel.create()
-        try {
-            const result = await this.memberModel.create(input)
-            result.memberPassword = "";
-            //sending result as Member type
-            return result.toObject() as Member;   
-        } catch (error) {
-            
-            throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED)
-        }
-    }
-    //loginproccess
-    public async proccessLogin(input: LoginInput): Promise<Member> {
-        //finding membernick in database as the same as input's membernick! and returning membernick and password
-        const member = await this.memberModel.findOne({memberNick: input.memberNick}, {memberNick: 1, memberPassword: 1}).exec()
-        if(!member) throw new Errors(HttpCode.NOT_FOUND, Message.USER_NOT_FOUND)
-        //checking if input's password and pasword in db is the same!
-        const isMatch = await bcrypt.compare(input.memberPassword, member.memberPassword)
-        if(!isMatch) throw new Errors(HttpCode.BAD_REQUEST, Message.WRONG_PASSWORD)
-        
-        //finding member in db
-        const result = await this.memberModel.findById(member._id).exec()
-        return result?.toObject() as Member;
-    }
+    //finding member in db
+    const result = await this.memberModel.findById(member._id).exec();
+    return result?.toObject() as Member;
+  }
 }
 export default MemberService;

@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { T } from "../libs/types/common";
 import MemberService from "../model/Member.service";
 import { MemberInput, LoginInput, loginRequest } from "../libs/types/member";
-import { MemberType } from "../libs/enums/member.types";
+import { MemberType } from "../libs/enums/member.enum";
 import Errors, { Message } from "../libs/Errors";
 
 const adminController: T = {}; //Object with type of T
