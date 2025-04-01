@@ -24,7 +24,6 @@ export interface Product {
   productPrice: number;
   productLeftCount: number;
   productSize: ProductSize;
-
   productDesc?: string;
   productImages: string[];
   productView: number;
