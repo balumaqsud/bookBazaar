@@ -28,7 +28,7 @@ productController.createNewProduct = async (
   try {
     console.log("createNewProduct");
     const data: ProductInput = req.body;
-    if (req.files?.length >= 2)
+    if (!req.files?.length)
       throw new Errors(HttpCode.BAD_REQUEST, Message.MORE_IMAGE);
     data.productImages = req.files?.map((ele) => {
       return ele.path;
