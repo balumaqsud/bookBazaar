@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { T } from "../libs/types/common";
 import MemberService from "../model/Member.service";
-import { MemberInput, LoginInput, loginRequest } from "../libs/types/member";
+import { MemberInput, LoginInput, AdminRequest } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 import Errors, { Message } from "../libs/Errors";
 
@@ -32,7 +32,7 @@ adminController.signup = (req: Request, res: Response) => {
   }
 };
 //singin process
-adminController.proccessSignUp = async (req: loginRequest, res: Response) => {
+adminController.proccessSignUp = async (req: AdminRequest, res: Response) => {
   try {
     //getting user's request
     console.log("Process signUP");
@@ -55,7 +55,7 @@ adminController.proccessSignUp = async (req: loginRequest, res: Response) => {
   }
 };
 //login process
-adminController.proccessLogin = async (req: loginRequest, res: Response) => {
+adminController.proccessLogin = async (req: AdminRequest, res: Response) => {
   try {
     console.log("login process");
     //getting user's request with type of  LoginType
@@ -77,7 +77,7 @@ adminController.proccessLogin = async (req: loginRequest, res: Response) => {
   }
 };
 //checking if auth session works
-adminController.checkAuthSession = async (req: loginRequest, res: Response) => {
+adminController.checkAuthSession = async (req: AdminRequest, res: Response) => {
   try {
     if (req.session?.member)
       res.send(
@@ -94,7 +94,7 @@ adminController.checkAuthSession = async (req: loginRequest, res: Response) => {
   }
 };
 //logout
-adminController.logout = async (req: loginRequest, res: Response) => {
+adminController.logout = async (req: AdminRequest, res: Response) => {
   try {
     console.log("logout");
     req.session.destroy(() => {
@@ -107,7 +107,7 @@ adminController.logout = async (req: loginRequest, res: Response) => {
 };
 //createing method that later works as middleware, to check if admin.memberType is Admin, using next()
 adminController.verifyAdmin = (
-  req: loginRequest,
+  req: AdminRequest,
   res: Response,
   next: NextFunction
 ) => {

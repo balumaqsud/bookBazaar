@@ -1,8 +1,9 @@
-import { loginRequest } from "../libs/types/member";
+import { AdminRequest } from "../libs/types/member";
 import Errors from "../libs/Errors";
 import { T } from "../libs/types/common";
 import ProductService from "../model/Product.service";
 import { Request, Response } from "express";
+import { ProductInput } from "../libs/types/product";
 
 const productSerive = new ProductService();
 const productController: T = {};
@@ -21,10 +22,18 @@ productController.getAllProducts = async (req: Request, res: Response) => {
   }
 };
 
-productController.createNewProduct = async (req: Request, res: Response) => {
+productController.createNewProduct = async (
+  req: AdminRequest,
+  res: Response
+) => {
   try {
     console.log("createNewProduct");
-    res.send("product created successfully");
+    const data: ProductInput = req.body;
+    data.productImages = req.files?.map((ele) => {
+      return ele.path;
+    });
+    await productSerive.createNewProduct(data);
+    res.redirect("/admin/product/all");
   } catch (error) {
     if (error instanceof Errors) res.status(error.code).json(error.message);
     else {

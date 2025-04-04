@@ -36,7 +36,6 @@ const ProductSchemaModel = new Schema(
     },
     productDesc: {
       type: String,
-      required: true,
     },
     productImages: {
       type: [String],
