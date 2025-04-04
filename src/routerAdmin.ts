@@ -30,7 +30,7 @@ routerAdmin.get(
 routerAdmin.post(
   "/product/create",
   adminController.verifyAdmin,
-  uploader("products").array("productImage", 6),
+  uploader("products").array("productImages", 6),
   productController.createNewProduct
 );
 routerAdmin.post(
@@ -38,5 +38,6 @@ routerAdmin.post(
   adminController.verifyAdmin,
   productController.updateTheProduct
 );
+//user
 
 export default routerAdmin;

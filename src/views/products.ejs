@@ -3,6 +3,9 @@
   <div>
     <div>All Products</div>
     <div>hello, <%=member.memberNick%></div>
+    <% products.map((ele, index) => { %> 
+        <p><%=ele.productName%></p>
+    <% })%> 
   </div>
 </body>
 <%- include('includes/footer')%>
