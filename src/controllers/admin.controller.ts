@@ -3,7 +3,7 @@ import { T } from "../libs/types/common";
 import MemberService from "../model/Member.service";
 import { MemberInput, LoginInput, AdminRequest } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
-import Errors, { Message } from "../libs/Errors";
+import Errors, { HttpCode, Message } from "../libs/Errors";
 
 const adminController: T = {}; //Object with type of T
 
@@ -37,6 +37,8 @@ adminController.proccessSignUp = async (req: AdminRequest, res: Response) => {
     //getting user's request
     console.log("Process signUP");
     const newMember: MemberInput = req.body;
+    if (!req.file)
+      throw new Errors(HttpCode.BAD_REQUEST, Message.PROFILE_IMAGE_NEEDED);
     newMember.memberType = MemberType.ADMIN; //setting memberType as Admin
 
     //passing it to MemberService's method and getting result

@@ -18,6 +18,8 @@ export enum Message {
   WRONG_PASSWORD = "Password is incorrect",
   USED_NICK_PHONE = "USED Nickname or Phone NUmber",
   NOT_AUTHENTICATED = "You are not authenticated yet, Please Login first!",
+  MORE_IMAGE = "Plase upload more than one photos!",
+  PROFILE_IMAGE_NEEDED = "ㅖlease, Upload Profile Image!",
 }
 
 class Errors extends Error {

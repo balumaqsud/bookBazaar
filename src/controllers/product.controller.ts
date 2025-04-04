@@ -1,5 +1,5 @@
 import { AdminRequest } from "../libs/types/member";
-import Errors from "../libs/Errors";
+import Errors, { HttpCode, Message } from "../libs/Errors";
 import { T } from "../libs/types/common";
 import ProductService from "../model/Product.service";
 import { Request, Response } from "express";
@@ -12,7 +12,6 @@ productController.getAllProducts = async (req: Request, res: Response) => {
   try {
     console.log("getAllProducts");
     const data = await productSerive.getAllProducts();
-    console.log(data);
     res.render("products", { products: data });
   } catch (error) {
     if (error instanceof Errors) res.status(error.code).json(error.message);
@@ -29,6 +28,8 @@ productController.createNewProduct = async (
   try {
     console.log("createNewProduct");
     const data: ProductInput = req.body;
+    if (req.files?.length >= 2)
+      throw new Errors(HttpCode.BAD_REQUEST, Message.MORE_IMAGE);
     data.productImages = req.files?.map((ele) => {
       return ele.path;
     });
