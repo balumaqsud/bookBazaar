@@ -28,7 +28,7 @@ adminController.signup = (req: Request, res: Response) => {
   try {
     res.render("signup");
   } catch (error) {
-    console.log("sigin", error);
+    console.log("signin", error);
   }
 };
 //signin process
