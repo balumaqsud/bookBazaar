@@ -9,13 +9,13 @@ const routerAdmin = express.Router();
 routerAdmin.get("/", adminController.goHome);
 routerAdmin
   .get("/login", adminController.login)
-  .post("/login", adminController.proccessLogin);
+  .post("/login", adminController.processLogin);
 routerAdmin
   .get("/signup", adminController.signup)
   .post(
     "/signup",
     uploader("members").single("memberImage"),
-    adminController.proccessSignUp
+    adminController.processSignUp
   );
 
 routerAdmin.get("/check-me", adminController.checkAuthSession);

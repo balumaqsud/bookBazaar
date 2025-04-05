@@ -43,10 +43,10 @@ class MemberService {
     return result?.toObject() as Member;
   }
 
-  //BSSR
-  //signin proccess
-  public async proccessSignUp(input: MemberInput): Promise<Member> {
-    // thowing erro if admin type exists
+  //SSR
+  //signin process
+  public async processSignUp(input: MemberInput): Promise<Member> {
+    // throwing error if admin type exists
     const exist = await this.memberModel
       .findOne({ memberType: MemberType.ADMIN })
       .exec();
@@ -59,7 +59,7 @@ class MemberService {
     const salt = await bcrypt.genSalt();
     input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
 
-    //tring to create and admin with memberModel.create()
+    //tying to create and admin with memberModel.create()
     try {
       const result = await this.memberModel.create(input);
       result.memberPassword = "";
@@ -69,9 +69,9 @@ class MemberService {
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     }
   }
-  //loginproccess
-  public async proccessLogin(input: LoginInput): Promise<Member> {
-    //finding membernick in database as the same as input's membernick! and returning membernick and password
+  //login process
+  public async processLogin(input: LoginInput): Promise<Member> {
+    //finding memberNick in database as the same as input's memberNick! and returning memberNick and password
     const member = await this.memberModel
       .findOne(
         { memberNick: input.memberNick },
@@ -79,7 +79,7 @@ class MemberService {
       )
       .exec();
     if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.USER_NOT_FOUND);
-    //checking if input's password and pasword in db is the same!
+    //checking if input's password and password in db is the same!
     const isMatch = await bcrypt.compare(
       input.memberPassword,
       member.memberPassword

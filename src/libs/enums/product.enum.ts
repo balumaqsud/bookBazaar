@@ -13,8 +13,8 @@ export enum ProductSize {
 
 export enum ProductCollection {
   CLOTHES = "CLOTHES",
-  ASSESSORIES = "ASSESSORIES",
+  ASSESSORS = "ASSESSORS",
   GIFTS = "GIFTS",
-  DECORATONS = "DECORATONS",
+  DECORATIONS = "DECORATIONS",
   OTHER = "OTHER",
 }

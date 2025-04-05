@@ -5,13 +5,13 @@ import ProductService from "../model/Product.service";
 import { Request, Response } from "express";
 import { ProductInput, ProductUpdateInput } from "../libs/types/product";
 
-const productSerive = new ProductService();
+const productService = new ProductService();
 const productController: T = {};
 
 productController.getAllProducts = async (req: Request, res: Response) => {
   try {
     console.log("getAllProducts");
-    const data = await productSerive.getAllProducts();
+    const data = await productService.getAllProducts();
     res.render("products", { products: data });
   } catch (error) {
     if (error instanceof Errors) res.status(error.code).json(error.message);
@@ -33,7 +33,7 @@ productController.createNewProduct = async (
     data.productImages = req.files?.map((ele) => {
       return ele.path;
     });
-    await productSerive.createNewProduct(data);
+    await productService.createNewProduct(data);
     res.redirect("/admin/product/all");
   } catch (error) {
     if (error instanceof Errors) res.status(error.code).json(error.message);
@@ -48,7 +48,7 @@ productController.updateTheProduct = async (req: Request, res: Response) => {
     console.log("updateTheProduct");
     const id = req.params.id;
     const input: ProductUpdateInput = req.body;
-    await productSerive.updateTheProduct(id, input);
+    await productService.updateTheProduct(id, input);
     res.redirect("/admin/product/all");
   } catch (error) {
     if (error instanceof Errors) res.status(error.code).json(error.message);

@@ -32,7 +32,7 @@ adminController.signup = (req: Request, res: Response) => {
   }
 };
 //singin process
-adminController.proccessSignUp = async (req: AdminRequest, res: Response) => {
+adminController.processSignUp = async (req: AdminRequest, res: Response) => {
   try {
     //getting user's request
     console.log("Process signUP");
@@ -42,7 +42,7 @@ adminController.proccessSignUp = async (req: AdminRequest, res: Response) => {
     newMember.memberType = MemberType.ADMIN; //setting memberType as Admin
 
     //passing it to MemberService's method and getting result
-    const result = await memberService.proccessSignUp(newMember);
+    const result = await memberService.processSignUp(newMember);
     req.session.member = result;
     req.session.save(() => {
       res.send(result);
@@ -57,20 +57,20 @@ adminController.proccessSignUp = async (req: AdminRequest, res: Response) => {
   }
 };
 //login process
-adminController.proccessLogin = async (req: AdminRequest, res: Response) => {
+adminController.processLogin = async (req: AdminRequest, res: Response) => {
   try {
     console.log("login process");
     //getting user's request with type of  LoginType
     const input: LoginInput = req.body;
 
-    //passing input to proccessLogin Method of memberService;
-    const result = await memberService.proccessLogin(input);
+    //passing input to processLogin Method of memberService;
+    const result = await memberService.processLogin(input);
     req.session.member = result;
     req.session.save(() => {
       res.send(result);
     });
   } catch (error) {
-    console.log("proccessLogin", error);
+    console.log("processLogin", error);
     const message =
       error instanceof Errors ? error.message : Message.SOMETHING_WENT_WRONG;
     res.send(
@@ -107,7 +107,7 @@ adminController.logout = async (req: AdminRequest, res: Response) => {
     res.redirect("/admin");
   }
 };
-//createing method that later works as middleware, to check if admin.memberType is Admin, using next()
+//creating method that later works as middleware, to check if admin.memberType is Admin, using next()
 adminController.verifyAdmin = (
   req: AdminRequest,
   res: Response,
