@@ -91,5 +91,28 @@ class MemberService {
     const result = await this.memberModel.findById(member._id).exec();
     return result?.toObject() as Member;
   }
+
+  public async getAllUsers(): Promise<any> {
+    const result = await this.memberModel
+      .find({
+        memberType: MemberType.ADMIN,
+      })
+      .exec();
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    return result;
+  }
+  public async updateTheUser(id: string, input: any): Promise<Member> {
+    const result = await this.memberModel
+      .findByIdAndUpdate(
+        {
+          _id: id,
+        },
+        input,
+        { new: true }
+      )
+      .exec();
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    return result.toObject() as Member;
+  }
 }
 export default MemberService;

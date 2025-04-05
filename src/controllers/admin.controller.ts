@@ -111,6 +111,8 @@ adminController.logout = async (req: AdminRequest, res: Response) => {
 adminController.getAllUsers = async (req: Request, res: Response) => {
   try {
     console.log("logout");
+    const result = await memberService.getAllUsers();
+    res.render("products", { data: result });
   } catch (error) {
     console.log("logout error", error);
     res.redirect("/admin");
