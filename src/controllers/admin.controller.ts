@@ -31,7 +31,7 @@ adminController.signup = (req: Request, res: Response) => {
     console.log("sigin", error);
   }
 };
-//singin process
+//signin process
 adminController.processSignUp = async (req: AdminRequest, res: Response) => {
   try {
     //getting user's request
@@ -102,6 +102,23 @@ adminController.logout = async (req: AdminRequest, res: Response) => {
     req.session.destroy(() => {
       res.redirect("/admin");
     });
+  } catch (error) {
+    console.log("logout error", error);
+    res.redirect("/admin");
+  }
+};
+
+adminController.getAllUsers = async (req: Request, res: Response) => {
+  try {
+    console.log("logout");
+  } catch (error) {
+    console.log("logout error", error);
+    res.redirect("/admin");
+  }
+};
+adminController.updateTheUser = async (req: AdminRequest, res: Response) => {
+  try {
+    console.log("logout");
   } catch (error) {
     console.log("logout error", error);
     res.redirect("/admin");

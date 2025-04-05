@@ -2,6 +2,7 @@ import express from "express";
 import adminController from "./controllers/admin.controller";
 import productController from "./controllers/product.controller";
 import uploader from "./libs/utils/uploader";
+import memberController from "./controllers/member.controller";
 
 const routerAdmin = express.Router();
 
@@ -39,5 +40,15 @@ routerAdmin.post(
   productController.updateTheProduct
 );
 //user
+routerAdmin.get(
+  "/user/all",
+  adminController.verifyAdmin,
+  adminController.getAllUsers
+);
+routerAdmin.post(
+  "/user/edit",
+  adminController.verifyAdmin,
+  adminController.updateTheUser
+);
 
 export default routerAdmin;
