@@ -100,11 +100,11 @@ adminController.logout = async (req: AdminRequest, res: Response) => {
   try {
     console.log("logout");
     req.session.destroy(() => {
-      res.redirect("/admin");
+      res.redirect("/admin/login");
     });
   } catch (error) {
     console.log("logout error", error);
-    res.redirect("/admin");
+    res.redirect("/admin/login");
   }
 };
 
@@ -115,7 +115,7 @@ adminController.getAllUsers = async (req: Request, res: Response) => {
     res.render("products", { users: result });
   } catch (error) {
     console.log("getAllUsers error", error);
-    res.redirect("/admin");
+    res.redirect("/admin/login");
   }
 };
 adminController.updateTheUser = async (req: AdminRequest, res: Response) => {
@@ -124,8 +124,8 @@ adminController.updateTheUser = async (req: AdminRequest, res: Response) => {
     const result = await memberService.updateTheUser(req.body);
     return res.status(200).json({ data: result });
   } catch (error) {
-    console.log("updateTheUser error", error);
-    res.redirect("/admin");
+    if (error instanceof Errors) res.status(error.code).json(error.message);
+    else res.json(Errors.standard.code).json(Errors.standard.message);
   }
 };
 //creating method that later works as middleware, to check if admin.memberType is Admin, using next()
