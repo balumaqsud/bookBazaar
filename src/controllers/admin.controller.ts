@@ -110,19 +110,19 @@ adminController.logout = async (req: AdminRequest, res: Response) => {
 
 adminController.getAllUsers = async (req: Request, res: Response) => {
   try {
-    console.log("logout");
+    console.log("getAllUsers");
     const result = await memberService.getAllUsers();
-    res.render("products", { data: result });
+    res.render("products", { users: result });
   } catch (error) {
-    console.log("logout error", error);
+    console.log("getAllUsers error", error);
     res.redirect("/admin");
   }
 };
 adminController.updateTheUser = async (req: AdminRequest, res: Response) => {
   try {
-    console.log("logout");
+    console.log("updateTheUser");
   } catch (error) {
-    console.log("logout error", error);
+    console.log("updateTheUser error", error);
     res.redirect("/admin");
   }
 };

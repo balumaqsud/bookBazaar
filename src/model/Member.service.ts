@@ -95,7 +95,7 @@ class MemberService {
   public async getAllUsers(): Promise<any> {
     const result = await this.memberModel
       .find({
-        memberType: MemberType.ADMIN,
+        memberType: MemberType.USER,
       })
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
