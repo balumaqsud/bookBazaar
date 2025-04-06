@@ -110,11 +110,11 @@ class MemberService {
   }
 
   public async updateTheUser(input: MemberUpdateInput): Promise<Member> {
-    const memberId = convertToMongoDbId(input._id);
+    input._id = convertToMongoDbId(input._id);
     const result = await this.memberModel
       .findByIdAndUpdate(
         {
-          _id: memberId,
+          _id: input._id,
         },
         input,
         { new: true }
