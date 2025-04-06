@@ -121,6 +121,8 @@ adminController.getAllUsers = async (req: Request, res: Response) => {
 adminController.updateTheUser = async (req: AdminRequest, res: Response) => {
   try {
     console.log("updateTheUser");
+    const result = await memberService.updateTheUser(req.body);
+    return res.status(200).json({ data: result });
   } catch (error) {
     console.log("updateTheUser error", error);
     res.redirect("/admin");

@@ -1,8 +1,15 @@
-import { MemberInput, Member, LoginInput } from "../libs/types/member";
+import {
+  MemberInput,
+  Member,
+  LoginInput,
+  MemberUpdateInput,
+} from "../libs/types/member";
 import MemberModel from "../schema/Member.model";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { MemberType } from "../libs/enums/member.enum";
 import bcrypt from "bcryptjs";
+import { ObjectId } from "mongoose";
+import { convertToMongoDbId } from "../libs/config";
 
 //Member service helps us to control member schema and stands between schema and controller!
 class MemberService {
@@ -101,11 +108,13 @@ class MemberService {
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
     return result;
   }
-  public async updateTheUser(id: string, input: any): Promise<Member> {
+
+  public async updateTheUser(input: MemberUpdateInput): Promise<Member> {
+    const memberId = convertToMongoDbId(input._id);
     const result = await this.memberModel
       .findByIdAndUpdate(
         {
-          _id: id,
+          _id: memberId,
         },
         input,
         { new: true }
