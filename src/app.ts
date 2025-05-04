@@ -18,7 +18,7 @@ const store = new MongoStore({
   collection: "sessions",
 });
 
-//enterance ---middlewares
+//entrance ---middlewares
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-//routning
+//routing
 app.use("/", router); // will be build in React
 app.use("/admin", routerAdmin); // will be build in EJS
 

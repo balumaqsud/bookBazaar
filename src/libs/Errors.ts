@@ -20,6 +20,7 @@ export enum Message {
   NOT_AUTHENTICATED = "You are not authenticated yet, Please Login first!",
   MORE_IMAGE = "Please upload more than one photos!",
   PROFILE_IMAGE_NEEDED = "ㅖlease, Upload Profile Image!",
+  BLOCKED_USER = "You are blocked, please connect to the Restaurant",
 }
 
 class Errors extends Error {
