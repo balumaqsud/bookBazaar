@@ -89,12 +89,12 @@ h1 + p {
   transform-origin: 0;
   outline: 1px solid transparent;
 }
-.book.contact {
+.book.signup {
   right: 2rem;
   bottom: 0.2rem;
   border-radius: 0.3rem 0 0 0.3rem;
 }
-.book.faq {
+.book.login {
   right: 0.8rem;
   bottom: 3.3rem;
   border-radius: 0.3rem 0 0 0.3rem;
