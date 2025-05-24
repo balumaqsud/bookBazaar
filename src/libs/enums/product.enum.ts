@@ -4,17 +4,19 @@ export enum ProductStatus {
   DELETE = "DELETE",
 }
 
-export enum ProductSize {
-  SMALL = "SMALL",
-  MEDIUM = "MEDIUM",
-  LARGE = "LARGE",
-  SET = "SET",
+export enum ProductType {
+  ELECTRONIC = "ELECTRONIC",
+  PHYSICAL = "PHYSICAL",
 }
 
-export enum ProductCollection {
-  CLOTHES = "CLOTHES",
-  ASSESSORS = "ASSESSORS",
-  GIFTS = "GIFTS",
-  DECORATIONS = "DECORATIONS",
-  OTHER = "OTHER",
+export enum ProductCategory {
+  HORROR = "HORROR",
+  FANTASY = "FANTASY",
+  SCIENCE_FICTION = "SCIENCE_FICTION",
+  ROMANCE = "ROMANCE",
+  KIDS = "KIDS",
+  HISTORY = "HISTORY",
+  POETRY = "POETRY",
+  ADVENTURE = "ADVENTURE",
+  THRILLER = "THRILLER",
 }

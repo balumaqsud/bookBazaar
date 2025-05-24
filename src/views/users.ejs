@@ -1,10 +1,10 @@
 <%- include('includes/header')%>
 <body>
   <div>
-    <div>All Products</div>
+    <div>All users</div>
     <div>hello, <%=member.memberNick%></div>
-    <% products.map((ele, index) => { %> 
-        <p><%=ele.productName%></p>
+    <% users.map((ele, index) => { %> 
+        <p><%=ele.memberNick%></p>
     <% })%> 
   </div>
 </body>

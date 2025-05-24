@@ -112,7 +112,7 @@ adminController.getAllUsers = async (req: Request, res: Response) => {
   try {
     console.log("getAllUsers");
     const result = await memberService.getAllUsers();
-    res.render("products", { users: result });
+    res.render("users", { users: result });
   } catch (error) {
     console.log("getAllUsers error", error);
     res.redirect("/admin/login");

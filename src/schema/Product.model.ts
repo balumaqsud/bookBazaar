@@ -1,8 +1,8 @@
 import mongoose, { Schema } from "mongoose";
 import {
-  ProductSize,
+  ProductType,
   ProductStatus,
-  ProductCollection,
+  ProductCategory,
 } from "../libs/enums/product.enum";
 
 const ProductSchemaModel = new Schema(
@@ -14,7 +14,7 @@ const ProductSchemaModel = new Schema(
     },
     productCollection: {
       type: String,
-      enum: ProductCollection,
+      enum: ProductCategory,
       required: true,
     },
     productName: {
@@ -31,8 +31,8 @@ const ProductSchemaModel = new Schema(
     },
     productSize: {
       type: String,
-      enum: ProductSize,
-      default: ProductSize.MEDIUM,
+      enum: ProductType,
+      default: ProductType.ELECTRONIC,
     },
     productDesc: {
       type: String,
@@ -50,6 +50,6 @@ const ProductSchemaModel = new Schema(
 ); //created and updated date
 
 //means these should be unique
-ProductSchemaModel.index({ productName: 1, productSize: 1 }, { unique: true });
+ProductSchemaModel.index({ productName: 1, productType: 1 }, { unique: true });
 
 export default mongoose.model("products", ProductSchemaModel);
