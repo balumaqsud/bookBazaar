@@ -109,13 +109,13 @@ button.ghost {
 .sign-in-container {
   left: 0;
   width: 50%;
-  z-index: 2;
+  z-index: 1;
 }
 
 .sign-up-container {
   left: 0;
   width: 50%;
-  z-index: 1;
+  z-index: 2;
   opacity: 0;
 }
 
@@ -196,17 +196,4 @@ button.ghost {
 /* Same effect for right */
 .container.right-panel-active .overlay-right {
   transform: translateY(20%);
-}
-
-.footer {
-  margin-top: 25px;
-  text-align: center;
-}
-
-.icons {
-  display: flex;
-  width: 30px;
-  height: 30px;
-  letter-spacing: 15px;
-  align-items: center;
 }
