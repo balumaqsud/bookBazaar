@@ -27,6 +27,7 @@
     "@types/node": "^22.13.10",
     "@types/uuid": "^10.0.0",
     "nodemon": "^3.1.9",
+    "sass": "^1.89.0",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2"
@@ -43,6 +44,7 @@
     "mongoose": "^6.2.9",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "postcss": "^8.5.3",
     "uuid": "^8.3.2"
   }
 }
