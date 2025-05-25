@@ -12,7 +12,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #db7a76;
+  background-color: #ef443b;
 }
 
 .users-container .navigation .nav .nav-link {
@@ -26,4 +26,12 @@
 
 .users-container .navigation .nav-item {
   cursor: pointer;
+}
+.users-container .users-frame {
+  width: 80%;
+}
+
+.board .user-table .header-name {
+  margin-top: 20px;
+  font-size: 18px;
 }
