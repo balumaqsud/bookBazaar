@@ -13,25 +13,28 @@
       <form action="#">
         <h1>Create Account</h1>
         <span>or use your email for registration</span>
-        <input type="text" placeholder="Name" />
+        <input type="text" placeholder="Username" />
         <input type="email" placeholder="Email" />
         <input type="password" placeholder="Password" />
-        <img class="upload-img-frame" src="/img/default.jpeg" />
-        <input
-          type="file"
-          id="input-file"
-          class="member-image"
-          name="memberImage"
-        />
+        <div class="image-upload">
+          <img class="upload-img-frame" src="/img/default.jpeg" />
+          <input
+            type="file"
+            id="input-file"
+            class="member-image"
+            name="memberImage"
+            hidden
+          />
+          <label for="input-file" class="file-input-label">Upload Image</label>
+        </div>
         <button>Sign Up</button>
       </form>
     </div>
     <div class="form-container sign-in-container">
       <form action="#">
         <h1>Login</h1>
-
-        <span>or use your account</span>
-        <input type="email" placeholder="Email" />
+        <span>welcome back, boss!</span>
+        <input type="email" placeholder="Username" />
         <input type="password" placeholder="Password" />
         <a href="/admin">back home</a>
         <button>Login</button>
@@ -45,7 +48,7 @@
           <button class="ghost" id="signIn">Sign In</button>
         </div>
         <div class="overlay-panel overlay-right">
-          <h1>Hello, Friend!</h1>
+          <h1>Hello, Boss!</h1>
           <p>Enter your personal details and start journey with us</p>
           <button class="ghost" id="signUp">Sign Up</button>
         </div>

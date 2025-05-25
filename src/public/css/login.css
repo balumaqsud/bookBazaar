@@ -212,3 +212,26 @@ input {
 .container.right-panel-active .overlay-right {
   transform: translateX(20%);
 }
+
+/* other*/
+.image-upload {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+.image-upload .upload-img-frame {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+.image-upload .file-input-label {
+  padding: 12px;
+  border: 1px solid #e0382f;
+  border-radius: 40px;
+}
