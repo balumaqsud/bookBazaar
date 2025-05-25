@@ -1,6 +1,6 @@
 <%- include('includes/header')%>
 
-<body>
+<body class="login-body">
   <link rel="stylesheet" type="text/css" href="/css/login.css" />
   <link
     rel="stylesheet"
@@ -8,10 +8,10 @@
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
     crossorigin="anonymous"
   />
-  <div class="container" id="container">
+  <div class="login-container" id="login-container">
     <div class="form-container sign-up-container">
-      <form action="#">
-        <h1>Create Account</h1>
+      <form class="login-form" action="#">
+        <h1 class="login-title">Create Account</h1>
         <span>or use your email for registration</span>
         <input type="text" placeholder="Username" />
         <input type="email" placeholder="Email" />
@@ -31,8 +31,8 @@
       </form>
     </div>
     <div class="form-container sign-in-container">
-      <form action="#">
-        <h1>Login</h1>
+      <form class="login-form" action="#">
+        <h1 class="login-title">Login</h1>
         <span>welcome back, boss!</span>
         <input type="email" placeholder="Username" />
         <input type="password" placeholder="Password" />
@@ -43,13 +43,17 @@
     <div class="overlay-container">
       <div class="overlay">
         <div class="overlay-panel overlay-left">
-          <h1>Welcome Back!</h1>
-          <p>To keep connected with us please login with your personal info</p>
+          <h1 class="login-title">Welcome Back!</h1>
+          <p class="login-subtitle">
+            To keep connected with us please login with your personal info
+          </p>
           <button class="ghost" id="signIn">Sign In</button>
         </div>
         <div class="overlay-panel overlay-right">
-          <h1>Hello, Boss!</h1>
-          <p>Enter your personal details and start journey with us</p>
+          <h1 class="login-title">Hello, Boss!</h1>
+          <p class="login-subtitle">
+            Enter your personal details and start journey with us
+          </p>
           <button class="ghost" id="signUp">Sign Up</button>
         </div>
       </div>

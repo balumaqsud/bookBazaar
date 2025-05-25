@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-body {
+.login-body {
   background: #d52b21;
   display: flex;
   justify-content: center;
@@ -15,16 +15,12 @@ body {
   margin: -20px 0 50px;
 }
 
-h1 {
+.login-title {
   font-weight: bold;
   margin: 0;
 }
 
-h2 {
-  text-align: center;
-}
-
-p {
+.login-subtitle {
   font-size: 14px;
   font-weight: 100;
   line-height: 20px;
@@ -69,7 +65,7 @@ button.ghost {
   border-color: #ffffff;
 }
 
-form {
+.form-container .login-form {
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -88,7 +84,7 @@ input {
   width: 100%;
 }
 
-.container {
+.login-container {
   background-color: #fff;
   border-radius: 10px;
   box-shadow:
@@ -114,7 +110,7 @@ input {
   z-index: 2;
 }
 
-.container.right-panel-active .sign-in-container {
+.login-container.right-panel-active .sign-in-container {
   transform: translateX(100%);
 }
 
@@ -125,7 +121,7 @@ input {
   z-index: 1;
 }
 
-.container.right-panel-active .sign-up-container {
+.login-container.right-panel-active .sign-up-container {
   transform: translateX(100%);
   opacity: 1;
   z-index: 5;
@@ -157,7 +153,7 @@ input {
   z-index: 100;
 }
 
-.container.right-panel-active .overlay-container {
+.login-container.right-panel-active .overlay-container {
   transform: translateX(-100%);
 }
 
@@ -177,7 +173,7 @@ input {
   transition: transform 0.6s ease-in-out;
 }
 
-.container.right-panel-active .overlay {
+.login-container.right-panel-active .overlay {
   transform: translateX(50%);
 }
 
@@ -200,7 +196,7 @@ input {
   transform: translateX(-20%);
 }
 
-.container.right-panel-active .overlay-left {
+.login-container.right-panel-active .overlay-left {
   transform: translateX(0);
 }
 
@@ -209,7 +205,7 @@ input {
   transform: translateX(0);
 }
 
-.container.right-panel-active .overlay-right {
+.login-container.right-panel-active .overlay-right {
   transform: translateX(20%);
 }
 
