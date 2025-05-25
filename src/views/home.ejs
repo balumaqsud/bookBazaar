@@ -1,15 +1,22 @@
 <%- include('includes/header')%>
-<body>
+<body class="home-body">
   <link rel="stylesheet" type="text/css" href="/css/home.css" />
   <nav class="shelf">
+    <% if(!member) { %>
     <a class="book home-page" href="/admin">Home</a>
-    <a class="book about-us" href="/">Book Bazaar</a>
-    <a class="book signup" href="/admin/login">Login</a>
+    <a class="book bazaar" href="/">Book Bazaar</a>
+    <a class="book book3" href="/admin/login">Login</a>
+    <% } else { %>
+    <a class="book user" href="/admin/user">Users</a>
+    <a class="book bazaar" href="/">Book Bazaar</a>
+    <a class="book book2" href="/admin/product/all">Products</a>
+    <a class="book book3" href="/admin/logout"  onclick="return confirm('Do you want to logout?')">Logout</a>
+    <% } %>
     <span class="book not-found"></span>
     <span class="door left"></span>
     <span class="door right"></span>
   </nav>
-  <h1>200 OK</h1>
+  <h1 class="home-title">BOOK BAZAAR</h1>
   <p>Sell any book, for 24/7, wanna try?</p>
 </body>
 

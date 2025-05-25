@@ -1,0 +1,29 @@
+.users-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.users-container .navigation {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #db7a76;
+}
+
+.users-container .navigation .nav .nav-link {
+  color: white;
+  font-family: monospace;
+  font-size: 24px;
+}
+.users-container .navigation .nav .nav-link:hover {
+  color: black;
+}
+
+.users-container .navigation .nav-item {
+  cursor: pointer;
+}

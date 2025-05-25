@@ -1,11 +1,33 @@
 <%- include('includes/header')%>
+<link rel="stylesheet" type="text/css" href="/css/user.css" />
 <body>
-  <div>
+  <div class="users-container">
+    <div class="navigation">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="/admin">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/product/all">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/user/all">Users</a>
+        </li>
+        <li
+          class="nav-item"
+          onclick="return confirm('Do you want to logout?')"
+        >
+          <a class="nav-link" href="/admin/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
     <div>All users</div>
     <div>hello, <%=member.memberNick%></div>
     <% users.map((ele, index) => { %> 
         <p><%=ele.memberNick%></p>
     <% })%> 
   </div>
+   
+  <script src="/js/user.js"></script>
 </body>
 <%- include('includes/footer')%>

@@ -1,11 +1,36 @@
 <%- include('includes/header')%>
+<link rel="stylesheet" type="text/css" href="/css/product.css" />
 <body>
-  <div>
-    <div>All Products</div>
-    <div>hello, <%=member.memberNick%></div>
-    <% products.map((ele, index) => { %> 
-        <p><%=ele.productName%></p>
-    <% })%> 
+  <div class="products-container">
+    <div class="navigation">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="/admin">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/product/all">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/user/all">Users</a>
+        </li>
+        <li
+          class="nav-item"
+          onclick="return confirm('Do you want to logout?')"
+        >
+          <a class="nav-link" href="/admin/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <div>All Products</div>
+      <div>hello, <%=member.memberNick%></div>
+      <% products.map((ele, index) => { %> 
+          <p><%=ele.productName%></p>
+      <% })%> 
+    </div>
+
   </div>
+  
+  <script src="/js/product.js"></script>
 </body>
 <%- include('includes/footer')%>

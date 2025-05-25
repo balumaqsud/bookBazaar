@@ -5,7 +5,7 @@ body,
 html {
   height: 100%;
 }
-body {
+.home-body {
   margin: 0;
   padding: 2rem;
   background-color: #d52b21;
@@ -14,11 +14,11 @@ body {
   overflow: hidden;
   margin-top: 10%;
 }
-h1 {
+.home-body .home-title {
   margin-top: 2rem;
   text-align: center;
 }
-h1 + p {
+.home-body .home-title + p {
   text-align: center;
 }
 .shelf {
@@ -84,17 +84,21 @@ h1 + p {
   transform: rotate(-90deg) translate(-12.4rem, 3rem);
   transform-origin: 0;
 }
-.book.about-us {
+.book.user {
+  transform: rotate(-90deg) translate(-12.4rem, 3rem);
+  transform-origin: 0;
+}
+.book.bazaar {
   transform: rotate(-100deg) translate(-13.4rem, 6.1rem);
   transform-origin: 0;
   outline: 1px solid transparent;
 }
-.book.signup {
+.book.book3 {
   right: 2rem;
   bottom: 0.2rem;
   border-radius: 0.3rem 0 0 0.3rem;
 }
-.book.login {
+.book.book2 {
   right: 0.8rem;
   bottom: 3.3rem;
   border-radius: 0.3rem 0 0 0.3rem;
