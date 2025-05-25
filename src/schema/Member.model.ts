@@ -18,7 +18,7 @@ const memberSchema = new Schema(
       index: { unique: true },
       required: true,
     },
-    memberPhone: {
+    memberEmail: {
       type: String,
       index: { unique: true },
       required: true,
@@ -38,7 +38,7 @@ const memberSchema = new Schema(
     memberImage: {
       type: String,
     },
-    memberAdress: {
+    memberAddress: {
       type: String,
     },
   },

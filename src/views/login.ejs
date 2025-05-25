@@ -1,23 +1,47 @@
 <%- include('includes/header')%>
+<link rel="stylesheet" type="text/css" href="/css/login.css" />
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+  crossorigin="anonymous"
+/>
 
 <body class="login-body">
-  <link rel="stylesheet" type="text/css" href="/css/login.css" />
-  <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-    crossorigin="anonymous"
-  />
   <div class="login-container" id="login-container">
     <div class="form-container sign-up-container">
-      <form class="login-form" action="#">
+      <form
+        class="log-sign-form"
+        onsubmit="return validateSignupForm()"
+        action="/admin/signup"
+        method="POST"
+        enctype="multipart/form-data"
+      >
         <h1 class="login-title">Create Account</h1>
         <span>or use your email for registration</span>
-        <input type="text" placeholder="Username" />
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <input
+          type="text"
+          placeholder="Username"
+          name="memberNick"
+          class="memberNick"
+          value=""
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          class="memberEmail"
+          name="memberEmail"
+          value=""
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          name="memberPassword"
+          class="memberPassword"
+          value=""
+        />
         <div class="image-upload">
-          <img class="upload-img-frame" src="/img/default.jpeg" />
+          <img class="upload-img" src="/img/default.jpeg" />
           <input
             type="file"
             id="input-file"
@@ -31,13 +55,18 @@
       </form>
     </div>
     <div class="form-container sign-in-container">
-      <form class="login-form" action="#">
+      <form class="log-sign-form" action="/admin/login" METHOD="POST">
         <h1 class="login-title">Login</h1>
         <span>welcome back, boss!</span>
-        <input type="email" placeholder="Username" />
-        <input type="password" placeholder="Password" />
+        <input placeholder="Username" type="text" name="memberNick" required />
+        <input
+          type="password"
+          placeholder="Password"
+          name="memberPassword"
+          required
+        />
         <a href="/admin">back home</a>
-        <button>Login</button>
+        <button name="login" type="submit">Login</button>
       </form>
     </div>
     <div class="overlay-container">

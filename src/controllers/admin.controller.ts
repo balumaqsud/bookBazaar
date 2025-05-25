@@ -45,7 +45,7 @@ adminController.processSignUp = async (req: AdminRequest, res: Response) => {
     const result = await memberService.processSignUp(newMember);
     req.session.member = result;
     req.session.save(() => {
-      res.send(result);
+      res.redirect("/admin/product/all");
     });
   } catch (error) {
     console.log("Process signUp error", error);
@@ -67,7 +67,7 @@ adminController.processLogin = async (req: AdminRequest, res: Response) => {
     const result = await memberService.processLogin(input);
     req.session.member = result;
     req.session.save(() => {
-      res.send(result);
+      res.redirect("/admin/product/all");
     });
   } catch (error) {
     console.log("processLogin", error);

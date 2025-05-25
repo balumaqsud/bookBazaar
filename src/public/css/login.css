@@ -65,7 +65,7 @@ button.ghost {
   border-color: #ffffff;
 }
 
-.form-container .login-form {
+.form-container .log-sign-form {
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -220,7 +220,7 @@ input {
   margin-top: 0.4rem;
   margin-bottom: 0.5rem;
 }
-.image-upload .upload-img-frame {
+.image-upload .upload-img {
   width: 90px;
   height: 90px;
   border-radius: 50%;
