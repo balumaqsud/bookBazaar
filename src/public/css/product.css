@@ -28,6 +28,10 @@
   cursor: pointer;
 }
 
+.product-table {
+  margin: 20px 0;
+}
+
 .product-book-frame .half-input {
   display: flex;
   flex-direction: row;
@@ -43,6 +47,20 @@
   align-items: center;
   margin: 10px 0;
 }
+
+.new-book-txt {
+  font-size: 24px;
+  text-align: center;
+  margin: 10px 0;
+}
 input {
-  width: 76%;
+  width: 78%;
+  border: 1px solid #7b7575;
+  border-radius: 10px;
+  padding: 4px;
+}
+select {
+  border: 1px solid #7b7575;
+  border-radius: 10px;
+  padding: 4px;
 }
