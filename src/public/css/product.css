@@ -27,3 +27,22 @@
 .products-container .navigation .nav-item {
   cursor: pointer;
 }
+
+.product-book-frame .half-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.product-book-frame .long-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+input {
+  width: 76%;
+}
