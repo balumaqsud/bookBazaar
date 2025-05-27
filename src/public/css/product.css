@@ -28,7 +28,11 @@
   cursor: pointer;
 }
 
-.product-table {
+.product-book-frame .board .product-table {
+  margin: 10px 0;
+}
+
+.product-table .table {
   margin: 20px 0;
 }
 
@@ -44,17 +48,23 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   margin: 10px 0;
 }
 
+.product-book-frame .long-input .product-desc {
+  width: 80%;
+  border: 1px solid #7b7575;
+  padding: 4px;
+  border-radius: 10px;
+}
 .new-book-txt {
   font-size: 24px;
   text-align: center;
   margin: 10px 0;
 }
 input {
-  width: 78%;
+  width: 80%;
   border: 1px solid #7b7575;
   border-radius: 10px;
   padding: 4px;
