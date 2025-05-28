@@ -48,8 +48,8 @@ productController.updateTheProduct = async (req: Request, res: Response) => {
     console.log("updateTheProduct");
     const id = req.params.id;
     const input: ProductUpdateInput = req.body;
-    await productService.updateTheProduct(id, input);
-    res.redirect("/admin/product/all");
+    const result = await productService.updateTheProduct(id, input);
+    res.status(HttpCode.OK).json({ data: result });
   } catch (error) {
     if (error instanceof Errors) res.status(error.code).json(error.message);
     else {

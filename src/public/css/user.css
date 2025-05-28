@@ -28,7 +28,7 @@
   cursor: pointer;
 }
 .users-container .users-frame {
-  width: 916px;
+  width: 980px;
   display: flex;
   flex-direction: column;
   gap: 4px;
