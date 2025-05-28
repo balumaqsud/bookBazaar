@@ -28,7 +28,10 @@
   cursor: pointer;
 }
 .users-container .users-frame {
-  width: 80%;
+  width: 916px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .board .user-table .header-name {

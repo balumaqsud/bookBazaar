@@ -28,8 +28,12 @@
   cursor: pointer;
 }
 
-.product-book-frame {
+.products-container .product-book-frame {
+  width: 916px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
 .product-book-frame .board .product-table {

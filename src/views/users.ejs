@@ -39,6 +39,8 @@
                 <th scope="col">No</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
+                <th scope="col">Address</th>
+                <th scope="col">Points</th>
                 <th scope="col">Status</th>
               </tr>
             </thead>
@@ -48,6 +50,8 @@
                   <td><%=index+1%></td>
                   <td><%=ele.memberNick%></td>
                   <td><%=ele.memberEmail%></td>
+                  <td><%=ele.memberAddress%></td>
+                  <td><%=ele.memberPoints%></td>
                   <td style="width: 13%">
                     <select class="spec-select member-status" id="<%=ele._id%>">
                       <option value="ACTIVE" <%= ele.memberStatus === "ACTIVE" ? "selected" : ""%> >ACTIVE</option>
