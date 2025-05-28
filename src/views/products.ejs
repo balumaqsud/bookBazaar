@@ -43,13 +43,14 @@
             <!--  LOOP PRODUCTS: START  -->
            <%products.map((ele, index)=> { %>
              <tbody style="background: white">
-              <td><%=index+1%></td>
-              <td><%=ele.productName%></td>
-              <td><%=ele.productType%></td>
-              <td><%=ele.productCategory%></td>
-              <td><%=ele.productDesc%></td>
-              <td><%=ele.productPrice%></td>
-              <td><%=ele.productLeftCount%></td>
+              <tr data-id="<%= ele._id %>">
+              <td ><%=index+1%></td>
+              <td class="property" data-field="productName"><%=ele.productName%></td>
+              <td class="property" data-field="productType"><%=ele.productType%></td>
+              <td class="property" data-field="productCategory"><%=ele.productCategory%></td>
+              <td class="property" data-field="productDesc"><%=ele.productDesc%></td>
+              <td class="property" data-field="productPrice"><%=ele.productPrice%></td>
+              <td class="property" data-field="productLeftCount"><%=ele.productLeftCount%></td>
               <td>
                 <select class="spec-select new-product-status" id="<%=ele._id%>">
                   <option value="PAUSE" <%= ele.productStatus === "PAUSE"? "selected" : ""%> >PAUSE</option>
@@ -57,6 +58,7 @@
                   <option value="DELETE" <%= ele.productStatus === "DELETE"? "selected" : ""%>>DELETE</option>
                 </select>
               </td>
+              </tr>
             </tbody>
 
             <% }) %>

@@ -105,6 +105,13 @@
   height: 100%;
   display: block;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.products-container .upload-img-box input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .new-book-txt {
