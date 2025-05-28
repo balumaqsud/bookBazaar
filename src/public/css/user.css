@@ -38,3 +38,10 @@
   margin-top: 20px;
   font-size: 18px;
 }
+
+/*other*/
+select {
+  border: 1px solid #7b7575;
+  border-radius: 10px;
+  padding: 4px;
+}
