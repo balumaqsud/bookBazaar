@@ -126,7 +126,7 @@ select {
 
 .btn-primary {
   border-radius: 20px;
-  border: 1px solid #d23931;
+  border: 1px solid #99e6aa;
   background-color: #4f7c59;
   color: #ffffff;
   font-size: 12px;
@@ -139,7 +139,7 @@ select {
 
 .operation-buttons .btn-cancel {
   border-radius: 20px;
-  border: 1px solid #0b5a1b;
+  border: 1px solid #c97e7a;
   background-color: #d23931;
   color: #ffffff;
   font-size: 12px;
