@@ -9,7 +9,7 @@ import MemberModel from "../schema/Member.model";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { MemberStatus, MemberType } from "../libs/enums/member.enum";
 import bcrypt from "bcryptjs";
-import { ObjectId } from "mongoose";
+
 import { convertToMongoDbId } from "../libs/config";
 
 //Member service helps us to control member schema and stands between schema and controller!
@@ -20,17 +20,21 @@ class MemberService {
     this.memberModel = MemberModel;
   }
   //SPA
+
   public async signup(input: MemberInput): Promise<Member> {
     const salt = await bcrypt.genSalt();
     input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
+
     try {
       const result = await this.memberModel.create(input);
       result.memberPassword = "";
       return result.toJSON() as Member;
     } catch (error) {
+      console.log(error);
       throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
     }
   }
+
   public async login(input: LoginInput): Promise<Member> {
     const member = await this.memberModel
       .findOne(

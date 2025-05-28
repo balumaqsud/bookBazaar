@@ -16,7 +16,7 @@ export enum Message {
   UPDATE_FAILED = "Update is failed!",
   USER_NOT_FOUND = "User not found, wrong Id",
   WRONG_PASSWORD = "Password is incorrect",
-  USED_NICK_PHONE = "USED Nickname or Phone NUmber",
+  USED_NICK_PHONE = "Used Nickname or Email",
   NOT_AUTHENTICATED = "You are not authenticated yet, Please Login first!",
   MORE_IMAGE = "Please upload more than one photos!",
   PROFILE_IMAGE_NEEDED = "ㅖlease, Upload Profile Image!",

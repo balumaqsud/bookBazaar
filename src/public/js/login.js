@@ -9,6 +9,7 @@ signUpButton.addEventListener("click", () => {
 signInButton.addEventListener("click", () => {
   container.classList.remove("right-panel-active");
 });
+
 // other
 console.log("Signup frontend javascript file");
 

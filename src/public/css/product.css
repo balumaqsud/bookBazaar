@@ -62,6 +62,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
 .book-container .img-frame .media-frame {
   display: flex;
   flex-direction: row;
@@ -90,7 +91,7 @@
 .product-book-frame .long-input .product-desc {
   width: 80%;
   border: 1px solid #7b7575;
-  padding: 4px;
+  padding: 8px;
   border-radius: 10px;
 }
 
@@ -101,6 +102,7 @@
   display: block;
   border-radius: 10px;
 }
+
 .new-book-txt {
   font-size: 24px;
   text-align: center;
@@ -131,14 +133,14 @@ select {
   transition: transform 80ms ease-in;
 }
 
-.btn-cancel {
+.operation-buttons .btn-cancel {
   border-radius: 20px;
   border: 1px solid #0b5a1b;
   background-color: #d23931;
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
-  padding: 12px 45px;
+  padding: 10px 30px;
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: transform 80ms ease-in;

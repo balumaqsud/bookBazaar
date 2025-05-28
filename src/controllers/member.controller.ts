@@ -14,9 +14,9 @@ const memberService = new MemberService();
 const memberController: T = {};
 memberController.signup = async (req: Request, res: Response) => {
   try {
-    console.log("login page");
-    const input: MemberInput = req.body,
-      result: Member = await memberService.signup(input);
+    console.log("signin page");
+    const input: MemberInput = req.body;
+    const result: Member = await memberService.signup(input);
 
     res.json({ member: result });
   } catch (error) {

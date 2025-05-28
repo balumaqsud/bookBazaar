@@ -12,7 +12,7 @@ const ProductSchemaModel = new Schema(
       enum: ProductStatus,
       default: ProductStatus.PAUSE,
     },
-    productCollection: {
+    productCategory: {
       type: String,
       enum: ProductCategory,
       required: true,
@@ -29,7 +29,7 @@ const ProductSchemaModel = new Schema(
       type: Number,
       required: true,
     },
-    productSize: {
+    productType: {
       type: String,
       enum: ProductType,
       default: ProductType.ELECTRONIC,
