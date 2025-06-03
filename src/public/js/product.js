@@ -1,5 +1,8 @@
 console.log("Products frontend javascript file");
 $(function () {
+  $("1").on("click", function () {
+    $("#file").val();
+  });
   //product status change
   $(".new-product-status").on("change", async function (e) {
     const id = e.target.id,
