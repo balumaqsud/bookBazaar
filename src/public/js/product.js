@@ -3,6 +3,16 @@ $(function () {
   $("1").on("click", function () {
     $("#file").val();
   });
+
+  $("#process-btn").on("click", () => {
+    $(".book-container").slideToggle(500);
+    $("#process-btn").css("display", "none");
+  });
+
+  $("#cancel-btn").on("click", () => {
+    $(".book-container").slideToggle(100);
+    $("#process-btn").css("display", "flex");
+  });
   //product status change
   $(".new-product-status").on("change", async function (e) {
     const id = e.target.id,
