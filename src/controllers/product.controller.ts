@@ -35,7 +35,7 @@ productController.createNewProduct = async (
     });
     await productService.createNewProduct(data);
     res.send(
-      `<script>alert("Created successfully"); window.location.replace('/admin/product/all')</script>`
+      `<script>alert("Created successfully");  window.location.reload(); window.location.replace('/admin/product/all')</script>`
     ); //sends this after image uploaded successfully
   } catch (error) {
     if (error instanceof Errors) res.status(error.code).json(error.message);

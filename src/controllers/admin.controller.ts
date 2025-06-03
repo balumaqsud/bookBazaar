@@ -52,7 +52,7 @@ adminController.processSignUp = async (req: AdminRequest, res: Response) => {
     const message =
       error instanceof Errors ? error.message : Message.SOMETHING_WENT_WRONG;
     res.send(
-      `<script>alert("${message}"): window.location.replace('admin/login')</script> `
+      `<script>alert("${message}"); window.location.reload(); window.location.replace('login')</script> `
     );
   }
 };
@@ -74,7 +74,7 @@ adminController.processLogin = async (req: AdminRequest, res: Response) => {
     const message =
       error instanceof Errors ? error.message : Message.SOMETHING_WENT_WRONG;
     res.send(
-      `<script>alert("${message}"): window.location.replace('/admin/login')</script> `
+      `<script>alert("${message}");  window.location.reload();  window.location.replace('/admin/login')</script> `
     );
   }
 };
@@ -83,11 +83,11 @@ adminController.checkAuthSession = async (req: AdminRequest, res: Response) => {
   try {
     if (req.session?.member)
       res.send(
-        `<script>alert("${req.session.member.memberNick}"): window.location.replace('/admin/login')</script> `
+        `<script>alert("${req.session.member.memberNick}");  window.location.reload(); window.location.replace('/admin/login')</script> `
       );
     else {
       res.send(
-        `<script>alert("${Message.NOT_AUTHENTICATED}"): window.location.replace('/admin/login')</script>`
+        `<script>alert("${Message.NOT_AUTHENTICATED}");  window.location.reload(); window.location.replace('/admin/login')</script>`
       );
     }
   } catch (error) {
@@ -139,7 +139,7 @@ adminController.verifyAdmin = (
     next();
   } else {
     res.send(
-      `<script>alert("${Message.NOT_AUTHENTICATED}"): window.location.replace('/admin/login')</script>`
+      `<script>alert("${Message.NOT_AUTHENTICATED}"); window.location.reload(); window.location.replace('/admin/login')</script>`
     );
   }
 };
