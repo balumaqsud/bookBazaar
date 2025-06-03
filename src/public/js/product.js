@@ -13,6 +13,7 @@ $(function () {
     $(".book-container").slideToggle(100);
     $("#process-btn").css("display", "flex");
   });
+
   //product status change
   $(".new-product-status").on("change", async function (e) {
     const id = e.target.id,

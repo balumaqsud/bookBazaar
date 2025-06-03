@@ -42,13 +42,13 @@
             </thead>
             <!--  LOOP PRODUCTS: START  -->
            <%products.map((ele, index)=> { %>
-             <tbody style="background: white">
-              <tr data-id="<%= ele._id %>">
+             <tbody style="background: white" >
+              <tr  data-id="<%= ele._id %>">
               <td ><%=index+1%></td>
               <td class="property" data-field="productName"><%=ele.productName%></td>
               <td class="property" data-field="productType"><%=ele.productType%></td>
               <td class="property" data-field="productCategory"><%=ele.productCategory%></td>
-              <td class="property" data-field="productDesc"><%=ele.productDesc%></td>
+              <td class="property" data-field="productDesc"><%=typeof ele.productDesc === 'string' && ele.productDesc.length > 70 ? ele.productDesc.substring(0, 50) + "..." : ele.productDesc%></td>
               <td class="property" data-field="productPrice"><%=ele.productPrice%></td>
               <td class="property" data-field="productLeftCount"><%=ele.productLeftCount%></td>
               <td>
