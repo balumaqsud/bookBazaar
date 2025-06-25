@@ -133,5 +133,19 @@ class MemberService {
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
     return result.toObject() as Member;
   }
+  //addUserPoint
+  public async addUserPoint(member: Member): Promise<Member> {
+    const memberId = convertToMongoDbId(member._id);
+    const result = await this.memberModel.findOneAndUpdate(
+      {
+        _id: memberId,
+        memberStatus: MemberStatus.ACTIVE,
+        memberType: MemberType.USER,
+      },
+      { $inc: { memberPoints: 1 } },
+      { new: true }
+    );
+    return result?.toJSON() as Member;
+  }
 }
 export default MemberService;
