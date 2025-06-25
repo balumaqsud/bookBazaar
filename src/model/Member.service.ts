@@ -13,6 +13,12 @@ import { convertToMongoDbId } from "../libs/config";
 
 //Member service helps us to control member schema and stands between schema and controller!
 class MemberService {
+  private readonly memberModel;
+  //schema from schemaModel
+  constructor() {
+    this.memberModel = MemberModel;
+  }
+
   public async getAdmin(): Promise<Member> {
     const result = await this.memberModel
       .findOne({ memberType: MemberType.ADMIN })
@@ -23,14 +29,6 @@ class MemberService {
   }
 
   //signin process
-  getMemberDetail(member: Member) {
-    throw new Error("Method not implemented.");
-  }
-  private readonly memberModel;
-  //schema from schemaModel
-  constructor() {
-    this.memberModel = MemberModel;
-  }
   //SPA
 
   public async signup(input: MemberInput): Promise<Member> {
@@ -42,12 +40,12 @@ class MemberService {
       result.memberPassword = "";
       return result.toJSON() as Member;
     } catch (error) {
-      console.log(error);
       throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
     }
   }
 
   public async login(input: LoginInput): Promise<Member> {
+    const status = console.log(input);
     const member = await this.memberModel
       .findOne(
         {
@@ -61,6 +59,7 @@ class MemberService {
     else if (member.memberStatus === MemberStatus.BLOCK) {
       throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER);
     }
+
     const isMatch = await bcrypt.compare(
       input.memberPassword,
       member.memberPassword
@@ -68,8 +67,9 @@ class MemberService {
     if (!isMatch)
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
 
+    //lean() cannot be used for further errors it makes
     const result = await this.memberModel.findById(member._id).exec();
-    return result?.toObject() as Member;
+    return result?.toJSON() as Member;
   }
 
   //SSR
@@ -141,6 +141,20 @@ class MemberService {
       .findByIdAndUpdate({ _id: memberID }, input, { new: true })
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+
+    return result.toJSON() as Member;
+  }
+
+  public async getMemberDetail(member: Member): Promise<Member> {
+    const memberId = convertToMongoDbId(member._id);
+    const result = await this.memberModel
+      .findOne({
+        _id: memberId,
+        memberStatus: MemberStatus.ACTIVE,
+      })
+      .exec();
+
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
     return result.toJSON() as Member;
   }

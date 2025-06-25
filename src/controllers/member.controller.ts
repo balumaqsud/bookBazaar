@@ -74,6 +74,7 @@ memberController.logout = (req: ExtendedRequest, res: Response) => {
     console.log("logout page");
     const input: ExtendedRequest = req.body;
 
+    res.cookie("accessToken", null, { maxAge: 0, httpOnly: true });
     res.status(HttpCode.OK).json({ logout: true });
   } catch (error) {
     console.log("home error: ", error);
