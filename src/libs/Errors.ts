@@ -21,6 +21,7 @@ export enum Message {
   MORE_IMAGE = "Please upload more than one photos!",
   PROFILE_IMAGE_NEEDED = "ㅖlease, Upload Profile Image!",
   BLOCKED_USER = "You are blocked, please connect to the Restaurant",
+  TOKEN_CREATION_FAIL = "TOKEN_CREATION_FAIL",
 }
 
 class Errors extends Error {

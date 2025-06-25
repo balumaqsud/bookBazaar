@@ -14,6 +14,10 @@ import { convertToMongoDbId } from "../libs/config";
 
 //Member service helps us to control member schema and stands between schema and controller!
 class MemberService {
+  //signin process
+  getMemberDetail(member: Member) {
+    throw new Error("Method not implemented.");
+  }
   private readonly memberModel;
   //schema from schemaModel
   constructor() {
@@ -116,6 +120,38 @@ class MemberService {
       })
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    return result;
+  }
+
+  //updateMember
+  public async updateMember(
+    member: Member,
+    input: MemberUpdateInput
+  ): Promise<Member> {
+    const memberID = convertToMongoDbId(member._id);
+    const result = await this.memberModel
+      .findByIdAndUpdate({ _id: memberID }, input, { new: true })
+      .exec();
+    if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+
+    return result.toJSON() as Member;
+  }
+
+  //top Users
+  public async getTopUsers(): Promise<any> {
+    const result = await this.memberModel
+      .find({
+        memberStatus: MemberStatus.ACTIVE,
+        memberPoints: { $gte: 1 },
+      })
+      .sort({ memberPoints: -1 })
+      .limit(4)
+      .exec();
+
+    if (!result || result.length === 0) {
+      throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    }
+
     return result;
   }
 
