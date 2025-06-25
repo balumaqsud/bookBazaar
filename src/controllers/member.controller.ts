@@ -10,6 +10,7 @@ import {
 } from "../libs/types/member";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import AuthService from "../model/Auth.service";
+import { AUTH_TIME } from "../libs/config";
 
 const memberService = new MemberService();
 const authService = new AuthService();
@@ -30,13 +31,19 @@ memberController.getAdmin = async (req: Request, res: Response) => {
 };
 memberController.signup = async (req: Request, res: Response) => {
   try {
-    console.log("signin page");
-    const input: MemberInput = req.body;
-    const result: Member = await memberService.signup(input);
+    console.log("SignUp");
+    const input: MemberInput = req.body,
+      result: Member = await memberService.signup(input),
+      token = await authService.createToken(result);
+    console.log(token);
+    res.cookie("accessToken", token, {
+      maxAge: AUTH_TIME * 3600 * 1000,
+      httpOnly: false,
+    });
 
-    res.json({ member: result });
+    res.status(HttpCode.CREATED).json({ member: result, accessToken: token });
   } catch (error) {
-    console.log("error in signup:", error);
+    console.log("signup, error:", error);
     if (error instanceof Errors) res.status(error.code).json(error);
     else res.status(Errors.standard.code).json(Errors.standard);
   }
@@ -44,13 +51,19 @@ memberController.signup = async (req: Request, res: Response) => {
 
 memberController.login = async (req: Request, res: Response) => {
   try {
-    console.log("login page");
+    console.log("login");
     const input: LoginInput = req.body,
-      result = await memberService.login(input);
+      result: Member = await memberService.login(input),
+      token = await authService.createToken(result);
 
-    res.json({ member: result });
+    res.cookie("accessToken", token, {
+      maxAge: AUTH_TIME * 3600 * 1000,
+      httpOnly: false,
+    });
+
+    res.status(HttpCode.OK).json({ member: result, accessToken: token });
   } catch (error) {
-    console.log("home error: ", error);
+    console.log("login, error:", error);
     if (error instanceof Errors) res.status(error.code).json(error.message);
     else res.status(Errors.standard.code).json(Errors.standard);
   }
