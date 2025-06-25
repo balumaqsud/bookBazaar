@@ -29,7 +29,7 @@ router.post(
 );
 
 router.get("/member/top-users", memberController.getTopUsers);
-router.get("/member/restaurant", memberController.getRestaurant);
+router.get("/member/admin", memberController.getAdmin);
 
 //router for products
 router.get("/product/all", productController.getProducts);

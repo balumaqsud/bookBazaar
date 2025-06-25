@@ -9,11 +9,19 @@ import MemberModel from "../schema/Member.model";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { MemberStatus, MemberType } from "../libs/enums/member.enum";
 import bcrypt from "bcryptjs";
-
 import { convertToMongoDbId } from "../libs/config";
 
 //Member service helps us to control member schema and stands between schema and controller!
 class MemberService {
+  public async getAdmin(): Promise<Member> {
+    const result = await this.memberModel
+      .findOne({ memberType: MemberType.ADMIN })
+      .exec();
+
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    return result.toJSON() as Member;
+  }
+
   //signin process
   getMemberDetail(member: Member) {
     throw new Error("Method not implemented.");

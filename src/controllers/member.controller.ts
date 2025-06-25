@@ -15,6 +15,19 @@ const memberService = new MemberService();
 const authService = new AuthService();
 
 const memberController: T = {};
+
+memberController.getAdmin = async (req: Request, res: Response) => {
+  try {
+    console.log("getRestaurant");
+    const result = await memberService.getAdmin();
+
+    res.status(HttpCode.OK).json(result);
+  } catch (error) {
+    console.log("getRestaurant, error:", error);
+    if (error instanceof Errors) res.status(error.code).json(error);
+    else res.status(Errors.standard.code).json(Errors.standard);
+  }
+};
 memberController.signup = async (req: Request, res: Response) => {
   try {
     console.log("signin page");
